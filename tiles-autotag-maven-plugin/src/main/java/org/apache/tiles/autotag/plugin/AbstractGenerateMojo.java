@@ -105,8 +105,9 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
         	long lastModified = templateSuite.getLastModified();
         	InputStream stream = templateSuite.getInputStream();
             try {
-	            XStream xstream = new XStream(new Sun14ReflectionProvider());
-	            suite = (TemplateSuite) xstream.fromXML(stream);
+	            XStream xstream = new XStream();
+				xstream.allowTypesByWildcard(new String[] {"org.apache.tiles.autotag.model.**"});
+				suite = (TemplateSuite) xstream.fromXML(stream);
             } finally {
 	            stream.close();
             }

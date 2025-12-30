@@ -20,27 +20,28 @@
  */
 package org.apache.tiles.autotag.generate;
 
+import org.apache.tiles.autotag.core.OutputLocator;
+import org.junit.jupiter.api.Test;
+
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.apache.tiles.autotag.core.OutputLocator;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author antonio
  *
  * @version $Rev$ $Date$
  */
-public class TemplateGeneratorBuilderTest {
+class TemplateGeneratorBuilderTest {
 
     /**
      * Test method for {@link TemplateGeneratorBuilder#addClassesTemplateSuiteGenerator(TemplateSuiteGenerator)}.
      */
     @Test
-    public void testAddClassesTemplateSuiteGenerator() {
+    void testAddClassesTemplateSuiteGenerator() {
         OutputLocator locator = createMock(OutputLocator.class);
         TemplateSuiteGenerator generator = createMock(TemplateSuiteGenerator.class);
 
@@ -56,14 +57,14 @@ public class TemplateGeneratorBuilderTest {
     /**
      * Test method for {@link TemplateGeneratorBuilder#addClassesTemplateSuiteGenerator(TemplateSuiteGenerator)}.
      */
-    @Test(expected = NullPointerException.class)
-    public void testAddClassesTemplateSuiteGeneratorException() {
+    @Test
+    void testAddClassesTemplateSuiteGeneratorException() {
         TemplateSuiteGenerator generator = createMock(TemplateSuiteGenerator.class);
 
         replay(generator);
         try {
-            TemplateGeneratorBuilder.createNewInstance()
-                    .addClassesTemplateSuiteGenerator(generator);
+            assertThrows(NullPointerException.class, () -> TemplateGeneratorBuilder.createNewInstance()
+                    .addClassesTemplateSuiteGenerator(generator));
         } finally {
             verify(generator);
         }
@@ -73,7 +74,7 @@ public class TemplateGeneratorBuilderTest {
      * Test method for {@link TemplateGeneratorBuilder#addClassesTemplateClassGenerator(TemplateClassGenerator)}.
      */
     @Test
-    public void testAddClassesTemplateClassGenerator() {
+    void testAddClassesTemplateClassGenerator() {
         OutputLocator locator = createMock(OutputLocator.class);
         TemplateClassGenerator generator = createMock(TemplateClassGenerator.class);
 
@@ -89,14 +90,14 @@ public class TemplateGeneratorBuilderTest {
     /**
      * Test method for {@link TemplateGeneratorBuilder#addClassesTemplateClassGenerator(TemplateClassGenerator)}.
      */
-    @Test(expected = NullPointerException.class)
-    public void testAddClassesTemplateClassGeneratorException() {
+    @Test
+    void testAddClassesTemplateClassGeneratorException() {
         TemplateClassGenerator generator = createMock(TemplateClassGenerator.class);
 
         replay(generator);
         try {
-            TemplateGeneratorBuilder.createNewInstance()
-                    .addClassesTemplateClassGenerator(generator);
+            assertThrows(NullPointerException.class, () -> TemplateGeneratorBuilder.createNewInstance()
+                    .addClassesTemplateClassGenerator(generator));
         } finally {
             verify(generator);
         }
@@ -106,7 +107,7 @@ public class TemplateGeneratorBuilderTest {
      * Test method for {@link TemplateGeneratorBuilder#addResourcesTemplateSuiteGenerator(TemplateSuiteGenerator)}.
      */
     @Test
-    public void testAddResourcesTemplateSuiteGenerator() {
+    void testAddResourcesTemplateSuiteGenerator() {
         OutputLocator locator = createMock(OutputLocator.class);
         TemplateSuiteGenerator generator = createMock(TemplateSuiteGenerator.class);
 
@@ -122,14 +123,14 @@ public class TemplateGeneratorBuilderTest {
     /**
      * Test method for {@link TemplateGeneratorBuilder#addResourcesTemplateSuiteGenerator(TemplateSuiteGenerator)}.
      */
-    @Test(expected = NullPointerException.class)
-    public void testAddResourcesTemplateSuiteGeneratorException() {
+    @Test
+    void testAddResourcesTemplateSuiteGeneratorException() {
         TemplateSuiteGenerator generator = createMock(TemplateSuiteGenerator.class);
 
         replay(generator);
         try {
-            TemplateGeneratorBuilder.createNewInstance()
-                    .addResourcesTemplateSuiteGenerator(generator);
+            assertThrows(NullPointerException.class, () -> TemplateGeneratorBuilder.createNewInstance()
+                    .addResourcesTemplateSuiteGenerator(generator));
         } finally {
             verify(generator);
         }
@@ -139,7 +140,7 @@ public class TemplateGeneratorBuilderTest {
      * Test method for {@link TemplateGeneratorBuilder#addResourcesTemplateClassGenerator(TemplateClassGenerator)}.
      */
     @Test
-    public void testAddResourcesTemplateClassGenerator() {
+    void testAddResourcesTemplateClassGenerator() {
         OutputLocator locator = createMock(OutputLocator.class);
         TemplateClassGenerator generator = createMock(TemplateClassGenerator.class);
 
@@ -155,14 +156,14 @@ public class TemplateGeneratorBuilderTest {
     /**
      * Test method for {@link TemplateGeneratorBuilder#addResourcesTemplateClassGenerator(TemplateClassGenerator)}.
      */
-    @Test(expected = NullPointerException.class)
-    public void testAddResourcesTemplateClassGeneratorException() {
+    @Test
+    void testAddResourcesTemplateClassGeneratorException() {
         TemplateClassGenerator generator = createMock(TemplateClassGenerator.class);
 
         replay(generator);
         try {
-            TemplateGeneratorBuilder.createNewInstance()
-                    .addResourcesTemplateClassGenerator(generator);
+            assertThrows(NullPointerException.class, () -> TemplateGeneratorBuilder.createNewInstance()
+                    .addResourcesTemplateClassGenerator(generator));
         } finally {
             verify(generator);
         }

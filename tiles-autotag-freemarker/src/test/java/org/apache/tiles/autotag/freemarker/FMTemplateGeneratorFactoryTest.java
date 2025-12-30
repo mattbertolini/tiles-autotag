@@ -20,31 +20,31 @@
  */
 package org.apache.tiles.autotag.freemarker;
 
+import org.apache.tiles.autotag.core.OutputLocator;
+import org.apache.tiles.autotag.generate.TemplateGenerator;
+import org.apache.tiles.autotag.generate.TemplateGeneratorBuilder;
+import org.apache.velocity.app.VelocityEngine;
+import org.junit.jupiter.api.Test;
+
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.isA;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-import static org.junit.Assert.assertSame;
-
-import org.apache.tiles.autotag.core.OutputLocator;
-import org.apache.tiles.autotag.generate.TemplateGenerator;
-import org.apache.tiles.autotag.generate.TemplateGeneratorBuilder;
-import org.apache.velocity.app.VelocityEngine;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * Tests {@link FMTemplateGeneratorFactory}.
  *
  * @version $Rev$ $Date$
  */
-public class FMTemplateGeneratorFactoryTest {
+class FMTemplateGeneratorFactoryTest {
 
     /**
      * Test method for {@link org.apache.tiles.autotag.freemarker.FMTemplateGeneratorFactory#createTemplateGenerator()}.
      */
     @Test
-    public void testCreateTemplateGenerator() {
+    void testCreateTemplateGenerator() {
         OutputLocator classesOutputLocator = createMock(OutputLocator.class);
         VelocityEngine velocityEngine = createMock(VelocityEngine.class);
         TemplateGeneratorBuilder builder = createMock(TemplateGeneratorBuilder.class);

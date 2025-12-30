@@ -20,33 +20,34 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.junit.Assert.*;
+import org.apache.tiles.autotag.freemarker.FMTemplateGeneratorFactory;
+import org.junit.jupiter.api.Test;
 
-import org.apache.tiles.autotag.velocity.VelocityTemplateGeneratorFactory;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Tests {@link GenerateVelocityMojo}.
+ * Tests {@link GenerateFreemarkerMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class GenerateVelocityMojoTest {
+class GenerateFreemarkerMojoTest {
 
     /**
-     * Test method for {@link GenerateVelocityMojo#createTemplateGeneratorFactory(VelocityEngine)}.
+     * Test method for {@link GenerateFreemarkerMojo#createTemplateGeneratorFactory(VelocityEngine)}.
      */
     @Test
-    public void testCreateTemplateGeneratorFactory() {
-        GenerateVelocityMojo mojo = new GenerateVelocityMojo();
-        assertTrue(mojo.createTemplateGeneratorFactory(null) instanceof VelocityTemplateGeneratorFactory);
+    void testCreateTemplateGeneratorFactory() {
+        GenerateFreemarkerMojo mojo = new GenerateFreemarkerMojo();
+        assertInstanceOf(FMTemplateGeneratorFactory.class, mojo.createTemplateGeneratorFactory(null));
     }
 
     /**
-     * Test method for {@link org.apache.tiles.autotag.plugin.GenerateVelocityMojo#getParameters()}.
+     * Test method for {@link org.apache.tiles.autotag.plugin.GenerateFreemarkerMojo#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
-        GenerateVelocityMojo mojo = new GenerateVelocityMojo();
+    void testGetParameters() {
+        GenerateFreemarkerMojo mojo = new GenerateFreemarkerMojo();
         assertNull(mojo.getParameters());
     }
 

@@ -20,24 +20,25 @@
  */
 package org.apache.tiles.autotag.tool;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link StringTool}.
  *
  * @version $Rev$ $Date$
  */
-public class StringToolTest {
+class StringToolTest {
 
     /**
      * Test method for {@link org.apache.tiles.autotag.tool.StringTool#splitOnNewlines(java.lang.String)}.
      */
     @Test
-    public void testSplitOnNewlines() {
+    void testSplitOnNewlines() {
         StringTool tool = new StringTool();
         List<String> splitted = tool.splitOnNewlines("time\nto\nsplit");
         assertEquals(3, splitted.size());
@@ -52,7 +53,7 @@ public class StringToolTest {
      * Test method for {@link org.apache.tiles.autotag.tool.StringTool#capitalizeFirstLetter(java.lang.String)}.
      */
     @Test
-    public void testCapitalizeFirstLetter() {
+    void testCapitalizeFirstLetter() {
         StringTool tool = new StringTool();
         assertEquals("Whatever", tool.capitalizeFirstLetter("whatever"));
     }
@@ -61,7 +62,7 @@ public class StringToolTest {
      * Test method for {@link StringTool#getDefaultValue(java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testGetDefaultValue() {
+    void testGetDefaultValue() {
         StringTool tool = new StringTool();
         assertEquals("0", tool.getDefaultValue("byte", null));
         assertEquals("1", tool.getDefaultValue("byte", "1"));
@@ -73,7 +74,7 @@ public class StringToolTest {
      * Test method for {@link org.apache.tiles.autotag.tool.StringTool#getClassToCast(java.lang.String)}.
      */
     @Test
-    public void testGetClassToCast() {
+    void testGetClassToCast() {
         StringTool tool = new StringTool();
         assertEquals(Byte.class.getName(), tool.getClassToCast("byte"));
         assertEquals("Whatever", tool.getClassToCast("Whatever"));

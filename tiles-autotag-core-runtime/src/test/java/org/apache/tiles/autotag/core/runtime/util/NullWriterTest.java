@@ -20,15 +20,15 @@
  */
 package org.apache.tiles.autotag.core.runtime.util;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests {@link NullWriter}.
  *
  * @version $Rev$ $Date$
  */
-public class NullWriterTest {
+class NullWriterTest {
 
     /**
      * A dummy size.
@@ -42,8 +42,8 @@ public class NullWriterTest {
     /**
      * Sets up the test.
      */
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         writer = new NullWriter();
     }
 
@@ -51,7 +51,7 @@ public class NullWriterTest {
      * Test method for {@link org.apache.tiles.autotag.core.runtime.util.NullWriter#write(char[], int, int)}.
      */
     @Test
-    public void testWriteCharArrayIntInt() {
+    void testWriteCharArrayIntInt() {
         writer.write("Hello there".toCharArray(), 0, DUMMY_SIZE);
     }
 
@@ -59,7 +59,7 @@ public class NullWriterTest {
      * Test method for {@link org.apache.tiles.autotag.core.runtime.util.NullWriter#flush()}.
      */
     @Test
-    public void testFlush() {
+    void testFlush() {
         writer.flush();
     }
 
@@ -67,7 +67,7 @@ public class NullWriterTest {
      * Test method for {@link org.apache.tiles.autotag.core.runtime.util.NullWriter#close()}.
      */
     @Test
-    public void testClose() {
+    void testClose() {
         writer.close();
     }
 

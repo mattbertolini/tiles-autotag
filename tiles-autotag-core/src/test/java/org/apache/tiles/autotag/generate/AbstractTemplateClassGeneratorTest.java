@@ -20,24 +20,11 @@
  */
 package org.apache.tiles.autotag.generate;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.createMockBuilder;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.isA;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Map;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.tiles.autotag.core.AutotagRuntimeException;
 import org.apache.tiles.autotag.core.ClassParseException;
-import org.apache.tiles.autotag.core.OutputLocator;
 import org.apache.tiles.autotag.core.DirectoryOutputLocator;
+import org.apache.tiles.autotag.core.OutputLocator;
 import org.apache.tiles.autotag.model.TemplateClass;
 import org.apache.tiles.autotag.model.TemplateSuite;
 import org.apache.velocity.Template;
@@ -45,15 +32,29 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Map;
+
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.createMockBuilder;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.isA;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests {@link AbstractTemplateClassGenerator}.
  *
  * @version $Rev$ $Date$
  */
-public class AbstractTemplateClassGeneratorTest {
+class AbstractTemplateClassGeneratorTest {
 
     /**
      * The velocity engine.
@@ -75,8 +76,8 @@ public class AbstractTemplateClassGeneratorTest {
      *
      * @throws IOException If something goes wrong.
      */
-    @Before
-    public void setUp() throws IOException {
+    @BeforeEach
+    void setUp() throws IOException {
         velocityEngine = createMock(VelocityEngine.class);
         generator = createMockBuilder(AbstractTemplateClassGenerator.class)
                 .withConstructor(velocityEngine).createMock();
@@ -98,7 +99,7 @@ public class AbstractTemplateClassGeneratorTest {
      * @throws Exception If something goes wrong.
      */
     @Test
-    public void testGenerate() throws Exception {
+    void testGenerate() throws Exception {
         directory.delete();
         directory.mkdir();
         OutputLocator locator = new DirectoryOutputLocator(directory);
@@ -127,8 +128,8 @@ public class AbstractTemplateClassGeneratorTest {
      * Test method for {@link AbstractTemplateClassGenerator#generate(File, String, TemplateSuite, TemplateClass, Map)}.
      * @throws Exception If something goes wrong.
      */
-    @Test(expected = AutotagRuntimeException.class)
-    public void testGenerateException1() throws Exception {
+    @Test
+    void testGenerateException1() throws Exception {
         directory.delete();
         directory.mkdir();
         OutputLocator locator = new DirectoryOutputLocator(directory);
@@ -148,7 +149,7 @@ public class AbstractTemplateClassGeneratorTest {
         expect(velocityEngine.getTemplate("/sample.vm")).andThrow(new ResourceNotFoundException("hello"));
 
         replay(velocityEngine, generator, suite, clazz, template, parameters);
-        generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass);
+        assertThrows(AutotagRuntimeException.class, () -> generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass));
         verify(velocityEngine, generator, suite, clazz, template, parameters);
     }
 
@@ -156,8 +157,8 @@ public class AbstractTemplateClassGeneratorTest {
      * Test method for {@link AbstractTemplateClassGenerator#generate(File, String, TemplateSuite, TemplateClass, Map)}.
      * @throws Exception If something goes wrong.
      */
-    @Test(expected = AutotagRuntimeException.class)
-    public void testGenerateException2() throws Exception {
+    @Test
+    void testGenerateException2() throws Exception {
         directory.delete();
         directory.mkdir();
         OutputLocator locator = new DirectoryOutputLocator(directory);
@@ -177,7 +178,7 @@ public class AbstractTemplateClassGeneratorTest {
         expect(velocityEngine.getTemplate("/sample.vm")).andThrow(new ParseErrorException("hello"));
 
         replay(velocityEngine, generator, suite, clazz, template, parameters);
-        generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass);
+        assertThrows(AutotagRuntimeException.class, () -> generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass));
         verify(velocityEngine, generator, suite, clazz, template, parameters);
     }
 
@@ -185,8 +186,8 @@ public class AbstractTemplateClassGeneratorTest {
      * Test method for {@link AbstractTemplateClassGenerator#generate(File, String, TemplateSuite, TemplateClass, Map)}.
      * @throws Exception If something goes wrong.
      */
-    @Test(expected = AutotagRuntimeException.class)
-    public void testGenerateException3() throws Exception {
+    @Test
+    void testGenerateException3() throws Exception {
         directory.delete();
         directory.mkdir();
         OutputLocator locator = new DirectoryOutputLocator(directory);
@@ -206,7 +207,7 @@ public class AbstractTemplateClassGeneratorTest {
         expect(velocityEngine.getTemplate("/sample.vm")).andThrow(new Exception());
 
         replay(velocityEngine, generator, suite, clazz, template, parameters);
-        generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass);
+        assertThrows(AutotagRuntimeException.class, () -> generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass));
         verify(velocityEngine, generator, suite, clazz, template, parameters);
     }
 
@@ -216,8 +217,8 @@ public class AbstractTemplateClassGeneratorTest {
      * @throws ParseErrorException If something goes wrong.
      * @throws ResourceNotFoundException If something goes wrong.
      */
-    @Test(expected = AutotagRuntimeException.class)
-    public void testGenerateException4() throws Exception {
+    @Test
+    void testGenerateException4() throws Exception {
         directory.delete();
         directory.mkdir();
         OutputLocator locator = new DirectoryOutputLocator(directory);
@@ -239,7 +240,7 @@ public class AbstractTemplateClassGeneratorTest {
         expectLastCall().andThrow(new IOException());
 
         replay(velocityEngine, generator, suite, clazz, template, parameters);
-        generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass);
+        assertThrows(AutotagRuntimeException.class, () -> generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass));
         verify(velocityEngine, generator, suite, clazz, template, parameters);
     }
 
@@ -249,8 +250,8 @@ public class AbstractTemplateClassGeneratorTest {
      * @throws ParseErrorException If something goes wrong.
      * @throws ResourceNotFoundException If something goes wrong.
      */
-    @Test(expected = ClassParseException.class)
-    public void testGenerateException5() throws Exception {
+    @Test
+    void testGenerateException5() throws Exception {
         directory.delete();
         directory.mkdir();
         OutputLocator locator = new DirectoryOutputLocator(directory);
@@ -272,7 +273,7 @@ public class AbstractTemplateClassGeneratorTest {
         expectLastCall().andThrow(new ClassParseException());
 
         replay(velocityEngine, generator, suite, clazz, template, parameters);
-        generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass);
+        assertThrows(ClassParseException.class, () -> generator.generate(locator, packageName, suite, clazz, parameters, runtimeClass, requestClass));
         verify(velocityEngine, generator, suite, clazz, template, parameters);
     }
 

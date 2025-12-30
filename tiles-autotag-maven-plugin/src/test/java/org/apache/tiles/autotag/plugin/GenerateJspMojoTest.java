@@ -20,34 +20,36 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.junit.Assert.*;
+import org.apache.tiles.autotag.jsp.JspTemplateGeneratorFactory;
+import org.junit.jupiter.api.Test;
 
-import org.apache.tiles.autotag.freemarker.FMTemplateGeneratorFactory;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 /**
- * Tests {@link GenerateFreemarkerMojo}.
+ * Tests {@link GenerateJspMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class GenerateFreemarkerMojoTest {
+class GenerateJspMojoTest {
 
     /**
-     * Test method for {@link GenerateFreemarkerMojo#createTemplateGeneratorFactory(VelocityEngine)}.
+     * Test method for {@link GenerateJspMojo#createTemplateGeneratorFactory(VelocityEngine)}.
      */
     @Test
-    public void testCreateTemplateGeneratorFactory() {
-        GenerateFreemarkerMojo mojo = new GenerateFreemarkerMojo();
-        assertTrue(mojo.createTemplateGeneratorFactory(null) instanceof FMTemplateGeneratorFactory);
+    void testCreateTemplateGeneratorFactory() {
+        GenerateJspMojo mojo = new GenerateJspMojo();
+        assertInstanceOf(JspTemplateGeneratorFactory.class, mojo.createTemplateGeneratorFactory(null));
     }
 
     /**
-     * Test method for {@link org.apache.tiles.autotag.plugin.GenerateFreemarkerMojo#getParameters()}.
+     * Test method for {@link org.apache.tiles.autotag.plugin.GenerateJspMojo#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
-        GenerateFreemarkerMojo mojo = new GenerateFreemarkerMojo();
-        assertNull(mojo.getParameters());
+    void testGetParameters() {
+        GenerateJspMojo mojo = new GenerateJspMojo();
+        mojo.taglibURI = "http://www.test.org/taglib";
+        assertEquals("http://www.test.org/taglib", mojo.getParameters().get("taglibURI"));
     }
 
 }

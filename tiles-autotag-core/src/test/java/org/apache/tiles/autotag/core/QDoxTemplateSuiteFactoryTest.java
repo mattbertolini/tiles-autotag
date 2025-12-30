@@ -20,8 +20,6 @@
  */
 package org.apache.tiles.autotag.core;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +33,20 @@ import org.apache.tiles.autotag.model.TemplateClass;
 import org.apache.tiles.autotag.model.TemplateMethod;
 import org.apache.tiles.autotag.model.TemplateParameter;
 import org.apache.tiles.autotag.model.TemplateSuite;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests {@link QDoxTemplateSuiteFactory}.
  *
  * @version $Rev$ $Date$
  */
-public class QDoxTemplateSuiteFactoryTest {
+class QDoxTemplateSuiteFactoryTest {
 
     private static final String REQUEST_CLASS = ExampleRequest.class.getName();
     /**
@@ -54,8 +57,8 @@ public class QDoxTemplateSuiteFactoryTest {
     /**
      * @throws java.lang.Exception
      */
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         factory = new QDoxTemplateSuiteFactory(
                 getClass().getResource("/org/apache/tiles/autotag/core/internal/ExampleModel.java"),
                 getClass().getResource("/org/apache/tiles/autotag/core/internal/AnnotatedExampleModel.java"),
@@ -71,7 +74,7 @@ public class QDoxTemplateSuiteFactoryTest {
      * Test method for {@link org.apache.tiles.autotag.core.DefaultTemplateSuiteFactory#createTemplateSuite()}.
      */
     @Test
-    public void testCreateTemplateSuite() {
+    void testCreateTemplateSuite() {
         TemplateSuite suite = factory.createTemplateSuite();
         assertEquals("The suite name", suite.getName());
         assertEquals("This are the docs", suite.getDocumentation());
@@ -83,8 +86,8 @@ public class QDoxTemplateSuiteFactoryTest {
         assertEquals("Example start/stop template.", templateClass.getDocumentation());
         TemplateMethod templateMethod = templateClass.getExecuteMethod();
         assertNotNull(templateMethod);
-        assertTrue(templateMethod.hasBody());
-        assertTrue(templateClass.hasBody());
+        Assertions.assertTrue(templateMethod.hasBody());
+        Assertions.assertTrue(templateClass.hasBody());
         assertEquals("execute", templateMethod.getName());
         assertEquals("It starts.", templateMethod.getDocumentation());
         List<TemplateParameter> parameters = new ArrayList<TemplateParameter>(templateMethod.getParameters());
@@ -120,7 +123,7 @@ public class QDoxTemplateSuiteFactoryTest {
         assertEquals("java.lang.String", parameter.getType());
         assertEquals("Parameter one.", parameter.getDocumentation());
         assertEquals("hello", parameter.getDefaultValue());
-        assertTrue(parameter.isRequired());
+        Assertions.assertTrue(parameter.isRequired());
 
         templateClass = suite.getTemplateClassByName(ExampleExecutableModel.class.getName());
         assertNotNull(templateClass);

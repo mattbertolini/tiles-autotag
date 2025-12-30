@@ -21,22 +21,23 @@
 
 package org.apache.tiles.autotag.core;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests {@link AutotagRuntimeException}.
  *
  * @version $Rev$ $Date$
  */
-public class AutotagRuntimeExceptionTest {
+class AutotagRuntimeExceptionTest {
 
     /**
      * Test method for {@link AutotagRuntimeException#AutotagRuntimeException()}.
      */
     @Test
-    public void testAutotagRuntimeException() {
+    void testAutotagRuntimeException() {
         AutotagRuntimeException exception = new AutotagRuntimeException();
         assertNull(exception.getMessage());
         assertNull(exception.getCause());
@@ -46,7 +47,7 @@ public class AutotagRuntimeExceptionTest {
      * Test method for {@link AutotagRuntimeException#AutotagRuntimeException(java.lang.String)}.
      */
     @Test
-    public void testAutotagRuntimeExceptionString() {
+    void testAutotagRuntimeExceptionString() {
         AutotagRuntimeException exception = new AutotagRuntimeException("my message");
         assertEquals("my message", exception.getMessage());
         assertNull(exception.getCause());
@@ -56,7 +57,7 @@ public class AutotagRuntimeExceptionTest {
      * Test method for {@link AutotagRuntimeException#AutotagRuntimeException(java.lang.Throwable)}.
      */
     @Test
-    public void testAutotagRuntimeExceptionThrowable() {
+    void testAutotagRuntimeExceptionThrowable() {
         Throwable cause = new Throwable();
         AutotagRuntimeException exception = new AutotagRuntimeException(cause);
         assertEquals(cause.toString(), exception.getMessage());
@@ -67,7 +68,7 @@ public class AutotagRuntimeExceptionTest {
      * Test method for {@link AutotagRuntimeException#AutotagRuntimeException(java.lang.String, java.lang.Throwable)}.
      */
     @Test
-    public void testAutotagRuntimeExceptionStringThrowable() {
+    void testAutotagRuntimeExceptionStringThrowable() {
         Throwable cause = new Throwable();
         AutotagRuntimeException exception = new AutotagRuntimeException("my message", cause);
         assertEquals("my message", exception.getMessage());

@@ -20,35 +20,35 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.junit.Assert.*;
+import org.apache.tiles.autotag.velocity.VelocityTemplateGeneratorFactory;
+import org.junit.jupiter.api.Test;
 
-import org.apache.tiles.autotag.jsp.JspTemplateGeneratorFactory;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Tests {@link GenerateJspMojo}.
+ * Tests {@link GenerateVelocityMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class GenerateJspMojoTest {
+class GenerateVelocityMojoTest {
 
     /**
-     * Test method for {@link GenerateJspMojo#createTemplateGeneratorFactory(VelocityEngine)}.
+     * Test method for {@link GenerateVelocityMojo#createTemplateGeneratorFactory(VelocityEngine)}.
      */
     @Test
-    public void testCreateTemplateGeneratorFactory() {
-        GenerateJspMojo mojo = new GenerateJspMojo();
-        assertTrue(mojo.createTemplateGeneratorFactory(null) instanceof JspTemplateGeneratorFactory);
+    void testCreateTemplateGeneratorFactory() {
+        GenerateVelocityMojo mojo = new GenerateVelocityMojo();
+        assertInstanceOf(VelocityTemplateGeneratorFactory.class, mojo.createTemplateGeneratorFactory(null));
     }
 
     /**
-     * Test method for {@link org.apache.tiles.autotag.plugin.GenerateJspMojo#getParameters()}.
+     * Test method for {@link org.apache.tiles.autotag.plugin.GenerateVelocityMojo#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
-        GenerateJspMojo mojo = new GenerateJspMojo();
-        mojo.taglibURI = "http://www.test.org/taglib";
-        assertEquals("http://www.test.org/taglib", mojo.getParameters().get("taglibURI"));
+    void testGetParameters() {
+        GenerateVelocityMojo mojo = new GenerateVelocityMojo();
+        assertNull(mojo.getParameters());
     }
 
 }

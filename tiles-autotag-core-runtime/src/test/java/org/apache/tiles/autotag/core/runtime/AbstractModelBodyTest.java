@@ -20,29 +20,36 @@
  */
 package org.apache.tiles.autotag.core.runtime;
 
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+import org.apache.tiles.autotag.core.runtime.util.NullWriter;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.apache.tiles.autotag.core.runtime.util.NullWriter;
-import org.junit.Test;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.createMockBuilder;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.isA;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests {@link AbstractModelBody}.
  *
  * @version $Rev$ $Date$
  */
-public class AbstractModelBodyTest {
+class AbstractModelBodyTest {
 
     /**
      * Test method for {@link org.apache.tiles.autotag.core.runtime.AbstractModelBody#evaluate()}.
      * @throws IOException If something goes wrong.
      */
     @Test
-    public void testEvaluate() throws IOException {
+    void testEvaluate() throws IOException {
         Writer writer = createMock(Writer.class);
         AbstractModelBody modelBody = createMockBuilder(AbstractModelBody.class).withConstructor(writer).createMock();
 
@@ -58,7 +65,7 @@ public class AbstractModelBodyTest {
      * @throws IOException If something goes wrong.
      */
     @Test
-    public void testEvaluateAsString() throws IOException {
+    void testEvaluateAsString() throws IOException {
         AbstractModelBody modelBody = new MockModelBody(null, "return me");
         assertEquals("return me", modelBody.evaluateAsString());
 
@@ -70,8 +77,8 @@ public class AbstractModelBodyTest {
      * Test method for {@link org.apache.tiles.autotag.core.runtime.AbstractModelBody#evaluateAsString()}.
      * @throws IOException If something goes wrong.
      */
-    @Test(expected = IOException.class)
-    public void testEvaluateAsStringException() throws IOException {
+    @Test
+    void testEvaluateAsStringException() throws IOException {
         Writer writer = createMock(Writer.class);
         AbstractModelBody modelBody = createMockBuilder(AbstractModelBody.class).withConstructor(writer).createMock();
 
@@ -80,7 +87,7 @@ public class AbstractModelBodyTest {
 
         replay(writer, modelBody);
         try {
-            modelBody.evaluateAsString();
+            assertThrows(IOException.class, modelBody::evaluateAsString);
         } finally {
             verify(writer, modelBody);
         }
@@ -91,7 +98,7 @@ public class AbstractModelBodyTest {
      * @throws IOException If something goes wrong.
      */
     @Test
-    public void testEvaluateWithoutWriting() throws IOException {
+    void testEvaluateWithoutWriting() throws IOException {
         Writer writer = createMock(Writer.class);
         AbstractModelBody modelBody = createMockBuilder(AbstractModelBody.class).withConstructor(writer).createMock();
 
@@ -106,8 +113,8 @@ public class AbstractModelBodyTest {
      * Test method for {@link org.apache.tiles.autotag.core.runtime.AbstractModelBody#evaluateWithoutWriting()}.
      * @throws IOException If something goes wrong.
      */
-    @Test(expected = IOException.class)
-    public void testEvaluateWithoutWritingException() throws IOException {
+    @Test
+    void testEvaluateWithoutWritingException() throws IOException {
         Writer writer = createMock(Writer.class);
         AbstractModelBody modelBody = createMockBuilder(AbstractModelBody.class).withConstructor(writer).createMock();
 
@@ -116,7 +123,7 @@ public class AbstractModelBodyTest {
 
         replay(writer, modelBody);
         try {
-            modelBody.evaluateWithoutWriting();
+            assertThrows(IOException.class, modelBody::evaluateWithoutWriting);
         } finally {
             verify(writer, modelBody);
         }

@@ -26,9 +26,7 @@ under the License.
     <groupId>org.apache.tiles</groupId>
     <version>1.3-SNAPSHOT</version>
   </parent>
-  <groupId>org.apache.tiles</groupId>
   <artifactId>tiles-autotag-jsp</artifactId>
-  <version>1.3-SNAPSHOT</version>
   <name>Tiles Autotag - JSP tags automatic generation</name>
   <description>Generates JSP tags automatically from templates.</description>
   <properties>
@@ -36,11 +34,11 @@ under the License.
         <checkstyle.maxAllowedViolations>1</checkstyle.maxAllowedViolations>
   </properties>
   <dependencies>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <scope>test</scope>
-    </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-api</artifactId>
+          <scope>test</scope>
+      </dependency>
     <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>

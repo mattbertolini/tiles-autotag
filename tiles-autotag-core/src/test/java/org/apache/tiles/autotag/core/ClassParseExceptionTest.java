@@ -21,22 +21,24 @@
 
 package org.apache.tiles.autotag.core;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests {@link ClassParseException}.
  *
  * @version $Rev$ $Date$
  */
-public class ClassParseExceptionTest {
+class ClassParseExceptionTest {
 
     /**
      * Test method for {@link ClassParseException#ClassParseException()}.
      */
     @Test
-    public void testClassParseException() {
+    void testClassParseException() {
         ClassParseException exception = new ClassParseException();
         assertNull(exception.getMessage());
         assertNull(exception.getCause());
@@ -46,7 +48,7 @@ public class ClassParseExceptionTest {
      * Test method for {@link ClassParseException#ClassParseException(java.lang.String)}.
      */
     @Test
-    public void testClassParseExceptionString() {
+    void testClassParseExceptionString() {
         ClassParseException exception = new ClassParseException("my message");
         assertEquals("my message", exception.getMessage());
         assertNull(exception.getCause());
@@ -56,7 +58,7 @@ public class ClassParseExceptionTest {
      * Test method for {@link ClassParseException#ClassParseException(java.lang.Throwable)}.
      */
     @Test
-    public void testClassParseExceptionThrowable() {
+    void testClassParseExceptionThrowable() {
         Throwable cause = new Throwable();
         ClassParseException exception = new ClassParseException(cause);
         assertEquals(cause.toString(), exception.getMessage());
@@ -67,7 +69,7 @@ public class ClassParseExceptionTest {
      * Test method for {@link ClassParseException#ClassParseException(java.lang.String, java.lang.Throwable)}.
      */
     @Test
-    public void testClassParseExceptionStringThrowable() {
+    void testClassParseExceptionStringThrowable() {
         Throwable cause = new Throwable();
         ClassParseException exception = new ClassParseException("my message", cause);
         assertEquals("my message", exception.getMessage());
