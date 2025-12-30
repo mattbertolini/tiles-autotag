@@ -20,28 +20,35 @@
  */
 package org.apache.tiles.autotag.model;
 
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Test;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author antonio
  *
  * @version $Rev$ $Date$
  */
-public class TemplateClassTest {
+class TemplateClassTest {
 
     /**
      * Test method for {@link TemplateClass#TemplateClass(String)}.
      */
     @Test
-    public void testTemplateConstructor1() {
+    void testTemplateConstructor1() {
         TemplateClass templateClass = new TemplateClass("name");
         assertEquals("name", templateClass.getName());
         assertNull(templateClass.getTagName());
@@ -55,7 +62,7 @@ public class TemplateClassTest {
      * Test method for {@link TemplateClass#TemplateClass(String, String, String, TemplateMethod)}.
      */
     @Test
-    public void testTemplateConstructor2() {
+    void testTemplateConstructor2() {
         TemplateMethod method = createMock(TemplateMethod.class);
 
         replay(method);
@@ -71,7 +78,7 @@ public class TemplateClassTest {
      * Test method for {@link TemplateClass#getSimpleName()}.
      */
     @Test
-    public void testGetSimpleName() {
+    void testGetSimpleName() {
         TemplateClass templateClass = new TemplateClass("name");
         assertEquals("name", templateClass.getSimpleName());
         templateClass = new TemplateClass("org.whatever.Hello");
@@ -82,7 +89,7 @@ public class TemplateClassTest {
      * Test method for {@link TemplateClass#setDocumentation(String)}.
      */
     @Test
-    public void testSetDocumentation() {
+    void testSetDocumentation() {
         TemplateClass templateClass = new TemplateClass("name");
         templateClass.setDocumentation("docs");
         assertEquals("docs", templateClass.getDocumentation());
@@ -92,7 +99,7 @@ public class TemplateClassTest {
      * Test method for {@link TemplateClass#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
+    void testGetParameters() {
         TemplateParameter param1 = createMock(TemplateParameter.class);
         TemplateParameter param2 = createMock(TemplateParameter.class);
         TemplateParameter param3 = createMock(TemplateParameter.class);
@@ -130,7 +137,7 @@ public class TemplateClassTest {
      * Test method for {@link TemplateClass#hasBody()}.
      */
     @Test
-    public void testHasBody() {
+    void testHasBody() {
         TemplateMethod method = createMock(TemplateMethod.class);
         expect(method.hasBody()).andReturn(true);
 
@@ -144,14 +151,12 @@ public class TemplateClassTest {
      * Test method for {@link TemplateClass#toString()}.
      */
     @Test
-    public void testToString() {
+    void testToString() {
         TemplateMethod method = new TemplateMethod("method", new ArrayList<TemplateParameter>());
         TemplateClass templateClass = new TemplateClass("name", "tagName", "tagClassPrefix", method);
-        assertEquals(
-                "TemplateClass [name=name, tagName=tagName, tagClassPrefix=tagClassPrefix, "
-                        + "documentation=null, executeMethod=TemplateMethod "
-                        + "[name=method, documentation=null, parameters={}]]",
-                templateClass.toString());
+        assertEquals("TemplateClass [name=name, tagName=tagName, tagClassPrefix=tagClassPrefix, "
+                + "documentation=null, executeMethod=TemplateMethod "
+                + "[name=method, documentation=null, parameters={}]]", templateClass.toString());
     }
 
 }

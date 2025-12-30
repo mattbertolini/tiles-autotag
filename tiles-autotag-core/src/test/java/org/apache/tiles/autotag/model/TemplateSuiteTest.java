@@ -20,27 +20,33 @@
  */
 package org.apache.tiles.autotag.model;
 
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Test;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link TemplateSuite}.
  *
  * @version $Rev$ $Date$
  */
-public class TemplateSuiteTest {
+class TemplateSuiteTest {
 
     /**
      * Test method for {@link TemplateSuite#TemplateSuite(java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testTemplateSuiteCostructor1() {
+    void testTemplateSuiteCostructor1() {
         TemplateSuite suite = new TemplateSuite("name", "docs");
         assertEquals("name", suite.getName());
         assertEquals("docs", suite.getDocumentation());
@@ -51,7 +57,7 @@ public class TemplateSuiteTest {
      * Test method for {@link TemplateSuite#TemplateSuite(java.lang.String, java.lang.String, java.lang.Iterable)}.
      */
     @Test
-    public void testTemplateSuiteConstructor2() {
+    void testTemplateSuiteConstructor2() {
         TemplateClass class1 = createMock(TemplateClass.class);
         TemplateClass class2 = createMock(TemplateClass.class);
         expect(class1.getName()).andReturn("class1");
@@ -77,7 +83,7 @@ public class TemplateSuiteTest {
      * Test method for {@link TemplateSuite#addTemplateClass(org.apache.tiles.autotag.model.TemplateClass)}.
      */
     @Test
-    public void testAddTemplateClass() {
+    void testAddTemplateClass() {
         TemplateClass class1 = createMock(TemplateClass.class);
         TemplateClass class2 = createMock(TemplateClass.class);
         expect(class1.getName()).andReturn("class1");
@@ -106,7 +112,7 @@ public class TemplateSuiteTest {
      * Test method for {@link TemplateSuite#toString()}.
      */
     @Test
-    public void testToString() {
+    void testToString() {
         TemplateSuite suite = new TemplateSuite("name", "docs");
         assertEquals("TemplateSuite [name=name, documentation=docs, templateClasses={}]", suite.toString());
     }

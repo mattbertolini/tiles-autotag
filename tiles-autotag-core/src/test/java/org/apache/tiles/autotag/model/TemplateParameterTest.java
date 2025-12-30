@@ -20,23 +20,25 @@
  */
 package org.apache.tiles.autotag.model;
 
-import static org.junit.Assert.*;
-
 import org.apache.tiles.autotag.core.runtime.ModelBody;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link TemplateParameter}.
  *
  * @version $Rev$ $Date$
  */
-public class TemplateParameterTest {
+class TemplateParameterTest {
 
     /**
      * Tests {@link TemplateParameter#TemplateParameter(String, String, String, String, boolean)}.
      */
     @Test
-    public void testTemplateParameter() {
+    void testTemplateParameter() {
         TemplateParameter parameter = new TemplateParameter("name", "exportedName", "type", "defaultValue", true, false);
         assertEquals("name", parameter.getName());
         assertEquals("exportedName", parameter.getExportedName());
@@ -72,7 +74,7 @@ public class TemplateParameterTest {
      * Tests {@link TemplateParameter#setDocumentation(String)}.
      */
     @Test
-    public void testSetDocumentation() {
+    void testSetDocumentation() {
         TemplateParameter parameter = new TemplateParameter("name", "exportedName", "type", "defaultValue", true, false);
         parameter.setDocumentation("docs");
         assertEquals("docs", parameter.getDocumentation());
@@ -82,12 +84,10 @@ public class TemplateParameterTest {
      * Tests {@link TemplateParameter#toString()}.
      */
     @Test
-    public void testToString() {
+    void testToString() {
         TemplateParameter parameter = new TemplateParameter("name", "exportedName", "type", "defaultValue", true, false);
-        assertEquals(
-                "TemplateParameter [name=name, exportedName=exportedName, "
-                        + "documentation=null, type=type, defaultValue=defaultValue, required=true, request=false]",
-                parameter.toString());
+        assertEquals("TemplateParameter [name=name, exportedName=exportedName, "
+                + "documentation=null, type=type, defaultValue=defaultValue, required=true, request=false]", parameter.toString());
     }
 
 }

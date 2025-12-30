@@ -20,32 +20,33 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.junit.Assert.*;
-
 import org.apache.tiles.autotag.jsp.JspTemplateGeneratorFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 /**
  * Tests {@link GenerateJspMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class GenerateJspMojoTest {
+class GenerateJspMojoTest {
 
     /**
      * Test method for {@link GenerateJspMojo#createTemplateGeneratorFactory(VelocityEngine)}.
      */
     @Test
-    public void testCreateTemplateGeneratorFactory() {
+    void testCreateTemplateGeneratorFactory() {
         GenerateJspMojo mojo = new GenerateJspMojo();
-        assertTrue(mojo.createTemplateGeneratorFactory(null) instanceof JspTemplateGeneratorFactory);
+        assertInstanceOf(JspTemplateGeneratorFactory.class, mojo.createTemplateGeneratorFactory(null));
     }
 
     /**
      * Test method for {@link org.apache.tiles.autotag.plugin.GenerateJspMojo#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
+    void testGetParameters() {
         GenerateJspMojo mojo = new GenerateJspMojo();
         mojo.taglibURI = "http://www.test.org/taglib";
         assertEquals("http://www.test.org/taglib", mojo.getParameters().get("taglibURI"));

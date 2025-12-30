@@ -20,32 +20,33 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.junit.Assert.*;
-
 import org.apache.tiles.autotag.freemarker.FMTemplateGeneratorFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests {@link GenerateFreemarkerMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class GenerateFreemarkerMojoTest {
+class GenerateFreemarkerMojoTest {
 
     /**
      * Test method for {@link GenerateFreemarkerMojo#createTemplateGeneratorFactory(VelocityEngine)}.
      */
     @Test
-    public void testCreateTemplateGeneratorFactory() {
+    void testCreateTemplateGeneratorFactory() {
         GenerateFreemarkerMojo mojo = new GenerateFreemarkerMojo();
-        assertTrue(mojo.createTemplateGeneratorFactory(null) instanceof FMTemplateGeneratorFactory);
+        assertInstanceOf(FMTemplateGeneratorFactory.class, mojo.createTemplateGeneratorFactory(null));
     }
 
     /**
      * Test method for {@link org.apache.tiles.autotag.plugin.GenerateFreemarkerMojo#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
+    void testGetParameters() {
         GenerateFreemarkerMojo mojo = new GenerateFreemarkerMojo();
         assertNull(mojo.getParameters());
     }

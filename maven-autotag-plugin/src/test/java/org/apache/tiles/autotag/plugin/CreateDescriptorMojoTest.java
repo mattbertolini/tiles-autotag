@@ -20,26 +20,8 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.isA;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.reflection.Sun14ReflectionProvider;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -55,18 +37,35 @@ import org.apache.tiles.autotag.plugin.internal.ExampleModel;
 import org.apache.tiles.autotag.plugin.internal.ExampleRequest;
 import org.apache.tiles.autotag.plugin.internal.NotFeasibleExampleModel;
 import org.codehaus.plexus.util.Scanner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.reflection.Sun14ReflectionProvider;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.isA;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link CreateDescriptorMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class CreateDescriptorMojoTest {
+class CreateDescriptorMojoTest {
 
     /**
      * Test method for {@link org.apache.tiles.autotag.plugin.CreateDescriptorMojo#execute()}.
@@ -74,7 +73,7 @@ public class CreateDescriptorMojoTest {
      * @throws MojoExecutionException If something goes wrong.
      */
     @Test
-    public void testExecute() throws IOException, MojoExecutionException {
+    void testExecute() throws IOException, MojoExecutionException {
         MavenProject mavenProject = createMock(MavenProject.class);
         BuildContext buildContext = createMock(BuildContext.class);
         Scanner scanner = createMock(Scanner.class);

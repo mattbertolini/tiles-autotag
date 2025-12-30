@@ -20,27 +20,33 @@
  */
 package org.apache.tiles.autotag.model;
 
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Test;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link TemplateMethod}.
  *
  * @version $Rev$ $Date$
  */
-public class TemplateMethodTest {
+class TemplateMethodTest {
 
     /**
      * Tests {@link TemplateMethod#TemplateMethod(String, Iterable)}.
      */
     @Test
-    public void testTemplateMethod() {
+    void testTemplateMethod() {
         TemplateParameter param1 = createMock(TemplateParameter.class);
         TemplateParameter param2 = createMock(TemplateParameter.class);
 
@@ -67,7 +73,7 @@ public class TemplateMethodTest {
      * Tests {@link TemplateMethod#setDocumentation(String)}.
      */
     @Test
-    public void testSetDocumentation() {
+    void testSetDocumentation() {
         TemplateMethod method = new TemplateMethod("method", new ArrayList<TemplateParameter>());
         method.setDocumentation("docs");
         assertEquals("docs", method.getDocumentation());
@@ -77,7 +83,7 @@ public class TemplateMethodTest {
      * Tests {@link TemplateMethod#hasBody()}.
      */
     @Test
-    public void testHasBody() {
+    void testHasBody() {
         TemplateParameter param1 = createMock(TemplateParameter.class);
         TemplateParameter param2 = createMock(TemplateParameter.class);
 
@@ -99,7 +105,7 @@ public class TemplateMethodTest {
      * Tests {@link TemplateMethod#hasBody()}.
      */
     @Test
-    public void testHasBody2() {
+    void testHasBody2() {
         TemplateParameter param1 = createMock(TemplateParameter.class);
         TemplateParameter param2 = createMock(TemplateParameter.class);
 
@@ -122,7 +128,7 @@ public class TemplateMethodTest {
      * Tests {@link TemplateMethod#toString()}.
      */
     @Test
-    public void testToString() {
+    void testToString() {
         TemplateMethod method = new TemplateMethod("method", new ArrayList<TemplateParameter>());
         assertEquals("TemplateMethod [name=method, documentation=null, parameters={}]", method.toString());
     }

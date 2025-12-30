@@ -20,15 +20,6 @@
  */
 package org.apache.tiles.autotag.velocity;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.tiles.autotag.core.DirectoryOutputLocator;
@@ -39,14 +30,23 @@ import org.apache.tiles.autotag.model.TemplateMethod;
 import org.apache.tiles.autotag.model.TemplateParameter;
 import org.apache.tiles.autotag.model.TemplateSuite;
 import org.apache.velocity.app.VelocityEngine;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link VelocityDirectiveGenerator}.
  *
  * @version $Rev$ $Date$
  */
-public class VelocityDirectiveGeneratorTest {
+class VelocityDirectiveGeneratorTest {
 
     public static final String REQUEST_CLASS = "org.apache.tiles.autotag.velocity.Request";
 
@@ -56,7 +56,7 @@ public class VelocityDirectiveGeneratorTest {
      * @throws Exception If something goes wrong.
      */
     @Test
-    public void testGenerate() throws Exception {
+    void testGenerate() throws Exception {
         Properties props = new Properties();
         InputStream propsStream = getClass().getResourceAsStream("/org/apache/tiles/autotag/velocity.properties");
         props.load(propsStream);

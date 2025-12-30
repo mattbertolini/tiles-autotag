@@ -20,32 +20,33 @@
  */
 package org.apache.tiles.autotag.plugin;
 
-import static org.junit.Assert.*;
-
 import org.apache.tiles.autotag.velocity.VelocityTemplateGeneratorFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests {@link GenerateVelocityMojo}.
  *
  * @version $Rev$ $Date$
  */
-public class GenerateVelocityMojoTest {
+class GenerateVelocityMojoTest {
 
     /**
      * Test method for {@link GenerateVelocityMojo#createTemplateGeneratorFactory(VelocityEngine)}.
      */
     @Test
-    public void testCreateTemplateGeneratorFactory() {
+    void testCreateTemplateGeneratorFactory() {
         GenerateVelocityMojo mojo = new GenerateVelocityMojo();
-        assertTrue(mojo.createTemplateGeneratorFactory(null) instanceof VelocityTemplateGeneratorFactory);
+        assertInstanceOf(VelocityTemplateGeneratorFactory.class, mojo.createTemplateGeneratorFactory(null));
     }
 
     /**
      * Test method for {@link org.apache.tiles.autotag.plugin.GenerateVelocityMojo#getParameters()}.
      */
     @Test
-    public void testGetParameters() {
+    void testGetParameters() {
         GenerateVelocityMojo mojo = new GenerateVelocityMojo();
         assertNull(mojo.getParameters());
     }

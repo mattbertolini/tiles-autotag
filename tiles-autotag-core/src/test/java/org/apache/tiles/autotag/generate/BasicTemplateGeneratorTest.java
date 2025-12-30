@@ -20,38 +20,37 @@
  */
 package org.apache.tiles.autotag.generate;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.apache.tiles.autotag.core.OutputLocator;
+import org.apache.tiles.autotag.generate.BasicTemplateGenerator.TCGeneratorDirectoryPair;
+import org.apache.tiles.autotag.generate.BasicTemplateGenerator.TSGeneratorDirectoryPair;
+import org.apache.tiles.autotag.model.TemplateClass;
+import org.apache.tiles.autotag.model.TemplateSuite;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.tiles.autotag.core.OutputLocator;
-import org.apache.tiles.autotag.generate.BasicTemplateGenerator.TCGeneratorDirectoryPair;
-import org.apache.tiles.autotag.generate.BasicTemplateGenerator.TSGeneratorDirectoryPair;
-import org.apache.tiles.autotag.model.TemplateClass;
-import org.apache.tiles.autotag.model.TemplateSuite;
-import org.junit.Test;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests {@link BasicTemplateGenerator}.
  *
  * @version $Rev$ $Date$
  */
-public class BasicTemplateGeneratorTest {
+class BasicTemplateGeneratorTest {
 
     /**
      * Test method for {@link BasicTemplateGenerator#generate(String, TemplateSuite, Map)}.
-     * @throws IOException If something goes wrong.
      */
     @Test
-    public void testGenerate() throws IOException {
+    void testGenerate() {
     	OutputLocator locator = createMock(OutputLocator.class);
         TemplateSuite suite = createMock(TemplateSuite.class);
         TemplateClass templateClass = createMock(TemplateClass.class);

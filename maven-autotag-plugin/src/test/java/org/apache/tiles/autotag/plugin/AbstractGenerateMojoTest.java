@@ -37,7 +37,7 @@ import org.apache.tiles.autotag.generate.TemplateGenerator;
 import org.apache.tiles.autotag.generate.TemplateGeneratorFactory;
 import org.apache.tiles.autotag.model.TemplateSuite;
 import org.apache.velocity.app.VelocityEngine;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
 /**
@@ -45,7 +45,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
  *
  * @version $Rev$ $Date$
  */
-public class AbstractGenerateMojoTest {
+class AbstractGenerateMojoTest {
 
     /**
      * Tests {@link AbstractGenerateMojo#execute()}.
@@ -53,7 +53,7 @@ public class AbstractGenerateMojoTest {
      * @throws MojoExecutionException If something goes wrong.
      */
     @Test
-    public void testExecute() throws IOException, MojoExecutionException {
+    void testExecute() throws IOException, MojoExecutionException {
         MavenProject mavenProject = createMock(MavenProject.class);
         BuildContext buildContext = createMock(BuildContext.class);
         TemplateGeneratorFactory factory = createMock(TemplateGeneratorFactory.class);
