@@ -104,7 +104,8 @@ class CreateDescriptorMojoTest {
         replay(mavenProject, buildContext, scanner);
         mojo.execute();
         InputStream sis = new FileInputStream(new File(temp, "META-INF/template-suite.xml"));
-        XStream xstream = new XStream(new Sun14ReflectionProvider());
+        XStream xstream = new XStream();
+        xstream.allowTypesByWildcard(new String[] {"org.apache.tiles.autotag.model.**"});
         TemplateSuite suite = (TemplateSuite) xstream.fromXML(sis);
         sis.close();
         assertEquals("test", suite.getName());

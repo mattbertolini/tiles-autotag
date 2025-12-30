@@ -58,7 +58,7 @@ under the License.
         <module>tiles-autotag-jsp</module>
         <module>tiles-autotag-freemarker</module>
         <module>tiles-autotag-velocity</module>
-        <module>maven-autotag-plugin</module>
+        <module>tiles-autotag-maven-plugin</module>
         <module>assembly</module>
     </modules>
     <distributionManagement>
@@ -109,6 +109,15 @@ under the License.
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>

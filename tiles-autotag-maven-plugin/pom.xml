@@ -27,10 +27,10 @@ under the License.
     <version>1.3-SNAPSHOT</version>
   </parent>
   <groupId>org.apache.tiles.autotag.plugin</groupId>
-  <artifactId>maven-autotag-plugin</artifactId>
+  <artifactId>tiles-autotag-maven-plugin</artifactId>
 
   <packaging>maven-plugin</packaging>
-  <name>maven-autotag-plugin Maven Mojo</name>
+  <name>tiles-autotag-maven-plugin Maven Mojo</name>
   <properties>
         <!-- decrease this whenever possible -->
         <checkstyle.maxAllowedViolations>71</checkstyle.maxAllowedViolations>
@@ -64,17 +64,17 @@ under the License.
     <dependency>
     	<groupId>com.thoughtworks.xstream</groupId>
     	<artifactId>xstream</artifactId>
-    	<version>1.3.1</version>
+    	<version>1.4.21</version>
     </dependency>
     <dependency>
     	<groupId>org.apache.tiles</groupId>
     	<artifactId>tiles-autotag-jsp</artifactId>
-    	<version>1.3-SNAPSHOT</version>
+    	<version>${project.version}</version>
     </dependency>
     <dependency>
     	<groupId>org.apache.maven</groupId>
     	<artifactId>maven-core</artifactId>
-    	<version>2.2.1</version>
+    	<version>3.8.1</version>
     </dependency>
     <dependency>
     	<groupId>org.apache.maven</groupId>
@@ -117,8 +117,9 @@ under the License.
   	<pluginManagement>
   		<plugins>
 	      <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
 	        <artifactId>maven-plugin-plugin</artifactId>
-	        <version>3.2</version>
+	        <version>3.15.0</version>
 	        <configuration>
 	          <!-- see http://jira.codehaus.org/browse/MNG-5346 -->
 	          <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
